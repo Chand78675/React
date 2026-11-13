@@ -1,0 +1,9 @@
+
+export function AdminDashboard()
+{
+    return(
+        <div className="container-fluid">
+            <h2>Admin Dashboard</h2>
+        </div>
+    )
+}

@@ -1,0 +1,35 @@
+import axios from "axios"
+import { useEffect, useState } from "react"
+import './mouse-demo.css';
+export function MouseDemo()
+{
+    const [mobiles,setMobiles] = useState([{img_src:null}]);
+    const [previewSrc,setpreviewSrc] = useState('c-1.jpeg');
+    useEffect(()=>{
+
+        axios.get('mobiles.json')
+        .then(response=>{
+            setMobiles(response.data);
+        })
+    },[])
+    function handleMouseOver(e)
+    {
+        setpreviewSrc(e.target.src);
+    }
+  return(
+    <div className="container-fluid">
+       <div className="row mt-4">
+          <div className="col-1 ">
+             {
+                mobiles.map(mobile=><div key={mobile.img_src} className="my-4 container-style">
+                    <img onMouseOver={handleMouseOver} src={mobile.img_src} width='50px'height='50px'/>
+                </div>)
+             }
+          </div>
+          <div className="col-11">
+               <img width='400px' height='400px' src={previewSrc}/>
+          </div>
+       </div>
+    </div>
+  )
+}
